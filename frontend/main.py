@@ -61,5 +61,4 @@ keycloak = login(
 )
 
 if keycloak.authenticated:
-    time.sleep(5)
     main()
