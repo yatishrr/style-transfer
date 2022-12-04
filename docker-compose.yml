@@ -20,13 +20,13 @@ services:
   keycloak:
       image: quay.io/keycloak/keycloak:legacy
       environment:
-        DB_VENDOR: MYSQL
-        DB_ADDR: python-app.c23omn6ex3h0.ap-south-1.rds.amazonaws.com
-        DB_DATABASE: keycloak
-        DB_USER: admin
-        DB_PASSWORD: qDVwXW3VkUnxIVIgNUbg
-        KEYCLOAK_USER: admin
-        KEYCLOAK_PASSWORD: Pa55w0rd
+        DB_VENDOR: ${DB_VENDOR}
+        DB_ADDR: ${DB_ADDR}
+        DB_DATABASE: ${DB_DATABASE}
+        DB_USER: ${DB_USER}
+        DB_PASSWORD: ${DB_PASSWORD}
+        KEYCLOAK_USER: ${KEYCLOAK_USER}
+        KEYCLOAK_PASSWORD: ${KEYCLOAK_PASSWORD}
         PROXY_ADDRESS_FORWARDING: "true"
         REDIRECT_SOCKET: "proxy-https"
         KEYCLOAK_FRONTEND_URL: https://style-transfer.awsexpress.cloud/auth
