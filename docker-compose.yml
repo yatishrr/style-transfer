@@ -16,8 +16,9 @@ services:
     volumes:
       - ./storage:/storage
 
+
   keycloak:
-      image: jboss/keycloak:latest
+      image: quay.io/keycloak/keycloak:legacy
       environment:
         DB_VENDOR: MYSQL
         DB_ADDR: python-app.c23omn6ex3h0.ap-south-1.rds.amazonaws.com
@@ -28,10 +29,12 @@ services:
         KEYCLOAK_PASSWORD: Pa55w0rd
         PROXY_ADDRESS_FORWARDING: "true"
         REDIRECT_SOCKET: "proxy-https"
-        KEYCLOAK_FRONTEND_URL: https://43.205.158.179/auth
+        KEYCLOAK_FRONTEND_URL: https://style-transfer.awsexpress.cloud/auth
+      
+      command: ["-Djboss.http.port=8081"]
 
       ports:
-        - "8081:8081"
+        - 8081:8081
 
   nginx:
     image: nginx
@@ -39,7 +42,9 @@ services:
     restart: on-failure
     volumes:
       - ./conf:/etc/nginx/conf.d
-      - /usr/local/certs:/etc/nginx/certs
+      - ./certs:/etc/nginx/certs
     ports:
       - "80:80"
       - "443:443"
+    depends_on:
+        - frontend
