@@ -28,7 +28,7 @@ def main():
     if st.button("Style Transfer"):
         if image is not None and style is not None:
            files = {"file": image.getvalue()}
-           res = requests.post(f"http://backend:8080/{style}", files=files)
+           res = requests.post(f"http://nginx:8088/{style}", files=files)
            img_path = res.json()
            image = Image.open(img_path.get("name"))
            st.image(image)
