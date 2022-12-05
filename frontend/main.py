@@ -58,6 +58,7 @@ keycloak = login(
     url="https://style-transfer.awsexpress.cloud/auth",
     realm="master",
     client_id="style-transfer",
+    auto_refresh=False
 )
 
 if keycloak.authenticated:
